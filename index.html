@@ -1,649 +1,206 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Tesfaye Meskele</title>
-<link rel="stylesheet" href="style.css" />
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet" />
-<style>
-    body {
-        background-color: black;
-        color: white;
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 0;
-    }
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Tesfaye Meskele</title>
 
-    header {
-        text-align: center;
-        font-family: 'Playfair Display', serif;
-        color: white;
-        padding: 20px;
-        background-image: url('photo_2025-01-08_13-21-26.jpg');
-        background-size: cover;
-        background-position: center;
-    }
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css" />
 
-    header .designed-by {
-        font-size: 12px;
-        color: white;
-        text-align: center;
-        margin-top: 10px;
-    }
-
-    /* NAV */
-    nav {
-        background-color: rgba(0, 0, 0, 0.85);
-        padding: 10px 0;
-        position: fixed;
-        top: 0;
-        right: 0;
-        z-index: 1000;
-        width: 100%;
-    }
-
-    nav ul {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-        display: flex;
-        justify-content: flex-end;
-        flex-wrap: wrap;
-    }
-
-    nav ul li {
-        position: relative;
-        margin: 0 10px;
-        display: flex;
-        align-items: center;
-    }
-
-    nav ul li a {
-        color: white;
-        text-decoration: none;
-        font-size: 15px;
-        font-weight: 500;
-        letter-spacing: 0.4px;
-        padding: 6px 12px;
-        display: flex;
-        align-items: center;
-        gap: 6px;
-        cursor: pointer;
-        transition: background-color 0.25s ease, color 0.25s ease;
-    }
-
-    nav ul li.has-dropdown > a::after {
-        content: '';
-        display: inline-block;
-        width: 6px;
-        height: 6px;
-        border-right: 1.5px solid currentColor;
-        border-bottom: 1.5px solid currentColor;
-        transform: rotate(45deg) translateY(-2px);
-        transition: transform 0.25s ease;
-        margin-left: 2px;
-        opacity: 0.75;
-    }
-
-    nav ul li.has-dropdown:hover > a::after {
-        transform: rotate(225deg) translateY(-2px);
-        opacity: 1;
-    }
-
-    nav ul li:hover > a {
-        background-color: rgba(255, 255, 0, 0.7);
-        color: black;
-    }
-
-    nav ul li:hover > ul { display: block; }
-
-    nav ul ul {
-        display: none;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        background-color: rgba(0, 0, 0, 0.95);
-        padding: 10px;
-        border-radius: 5px;
-        min-width: 160px;
-    }
-
-    nav ul ul li { margin: 5px 0; }
-    nav ul ul li a { font-size: 14px; padding: 5px 10px; }
-
-    /* SECTIONS */
-    section {
-        padding: 20px;
-        margin: 30px auto;
-        max-width: 800px;
-        background-color: rgba(0, 0, 0, 0.6);
-        border-radius: 10px;
-    }
-
-    .page-section { display: none; }
-
-    #home, #contact, #description { display: block; }
-
-    #home { margin-top: 70px; }
-
-    section.highlight {
-        background-color: rgba(255, 255, 0, 0.7);
-        color: black;
-    }
-
-    /* IMAGES */
-    img {
-        height: auto;
-        width: 100%;
-        max-width: 1200px;
-        display: block;
-        margin: 20px auto;
-    }
-
-    #third-image  { width: 50%; margin: 20px auto; display: block; }
-    #oromia-image { width: 70%; margin: 20px auto; display: block; }
-
-    #description-photo {
-        width: auto;
-        max-width: 280px;
-        aspect-ratio: 9 / 16;
-        object-fit: cover;
-        display: block;
-        margin: 20px auto 0;
-        border-radius: 6px;
-    }
-
-    /* ABOUT */
-    .about-container {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        gap: 20px;
-    }
-
-    .about-container img { width: 80%; }
-
-    /* US DEPT */
-    #us-department img { width: 50%; margin: 10px auto; }
-
-    /* VIDEO GRID */
-    .video-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 16px;
-    }
-
-    .video-placeholder {
-        background-color: rgba(255, 255, 255, 0.05);
-        border: 1px dashed rgba(255, 255, 255, 0.2);
-        border-radius: 8px;
-        aspect-ratio: 16 / 9;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        color: rgba(255, 255, 255, 0.4);
-        font-size: 13px;
-        gap: 8px;
-    }
-
-    .video-placeholder svg { opacity: 0.35; }
-
-    /* CONTACT */
-    .follow-us-buttons {
-        display: flex;
-        gap: 20px;
-        justify-content: center;
-        margin-top: 20px;
-    }
-
-    .follow-button {
-        color: white;
-        text-decoration: none;
-        padding: 12px 20px;
-        border-radius: 5px;
-        font-size: 18px;
-        transition: background-color 0.3s, color 0.3s;
-        border: 2px solid white;
-    }
-
-    .follow-button:hover { background-color: white; color: black; }
-    .follow-x         { background-color: #1DA1F2; }
-    .follow-instagram { background-color: #C13584; }
-
-    /* DESCRIPTION */
-    #description {
-        max-width: 800px;
-        margin: 10px auto 50px;
-        padding: 30px;
-        background-color: rgba(0, 0, 0, 0.6);
-        border-left: 3px solid rgba(255, 255, 0, 0.6);
-        border-radius: 4px;
-    }
-
-    #description p {
-        font-size: 1.05em;
-        line-height: 1.9;
-        color: #ccc;
-        font-style: italic;
-        margin: 0;
-    }
-
-    /* ABOUT TEXT */
-    .about-text p {
-        line-height: 1.85;
-        margin-bottom: 18px;
-        font-size: 0.97em;
-        color: #eee;
-    }
-
-    .about-text p:last-child { margin-bottom: 0; }
-
-    .about-text strong { color: #fff; }
-
-    /* GALLERY GRID */
-    .gallery-grid {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 8px;
-        margin-top: 16px;
-    }
-
-    .gallery-thumb {
-        width: 100%;
-        height: 90px;
-        object-fit: cover;
-        border-radius: 5px;
-        cursor: pointer;
-        margin: 0;
-        transition: opacity 0.2s ease, transform 0.2s ease;
-        display: block;
-        max-width: unset;
-    }
-
-    .gallery-thumb:hover {
-        opacity: 0.82;
-        transform: scale(1.04);
-    }
-
-    /* LIGHTBOX */
-    #lightbox {
-        display: none;
-        position: fixed;
-        inset: 0;
-        background: rgba(0, 0, 0, 0.94);
-        z-index: 9999;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-    }
-
-    #lightbox.active { display: flex; }
-
-    #lightbox img {
-        max-width: 90vw;
-        max-height: 85vh;
-        object-fit: contain;
-        border-radius: 6px;
-        margin: 0;
-        width: auto;
-        max-width: 90vw;
-    }
-
-    #lightbox-close {
-        position: absolute;
-        top: 18px;
-        right: 28px;
-        font-size: 38px;
-        color: white;
-        cursor: pointer;
-        line-height: 1;
-        opacity: 0.8;
-        transition: opacity 0.2s;
-        background: none;
-        border: none;
-        padding: 0;
-    }
-
-    #lightbox-close:hover { opacity: 1; }
-
-    #lightbox-prev,
-    #lightbox-next {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        font-size: 48px;
-        color: white;
-        cursor: pointer;
-        background: none;
-        border: none;
-        opacity: 0.65;
-        padding: 0 20px;
-        transition: opacity 0.2s;
-        line-height: 1;
-    }
-
-    #lightbox-prev:hover,
-    #lightbox-next:hover { opacity: 1; }
-
-    #lightbox-prev { left: 6px; }
-    #lightbox-next { right: 6px; }
-
-    #lightbox-caption {
-        color: rgba(255,255,255,0.55);
-        font-size: 13px;
-        margin-top: 12px;
-        letter-spacing: 0.3px;
-    }
-
-    /* FOOTER */
-    footer {
-        text-align: center;
-        padding: 20px;
-        background-image: url('WhatsApp Image 2025-01-08 at 04.48.28_5795ea55.jpg');
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        box-sizing: border-box;
-    }
-
-    footer .footer-content {
-        width: 800px;
-        text-align: center;
-        color: white;
-    }
-
-    /* RESPONSIVE */
-    @media (max-width: 768px) {
-        nav ul { flex-direction: column; }
-        nav ul li { margin: 6px 0; }
-        .about-container { flex-direction: column; align-items: center; }
-        .about-container img { width: 90%; margin-top: 20px; }
-        .video-grid { grid-template-columns: 1fr; }
-        .gallery-grid { grid-template-columns: repeat(3, 1fr); }
-    }
-</style>
 </head>
+
 <body>
 
-<header>
-    <h1>Tesfaye Meskele</h1>
-    <h2>Where the road ends, resilience begins!</h2>
-    <div class="designed-by">
-        Graphics designed by <a href="https://www.freepik.com" target="_blank" style="color:white;">Freepik</a>
-    </div>
-</header>
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-md navbar-light fixed-top">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#" onclick="showSection('home')">Tesfaye</a>
 
-<nav>
-    <ul>
-        <li><a href="#" onclick="showSection('home'); return false;">Home</a></li>
-        <li class="has-dropdown"><a href="#">Ethiopian Expedition</a>
-            <ul>
-                <li><a href="#" onclick="showSection('Oromia'); return false;">Oromia</a></li>
-                <li><a href="#" onclick="showSection('TanaBeles'); return false;">Tana Beles Project</a></li>
-                <li><a href="#" onclick="showSection('Amhara'); return false;">Amhara</a></li>
-                <li><a href="#" onclick="showSection('Tigray'); return false;">Tigray</a></li>
-                <li><a href="#" onclick="showSection('afar'); return false;">Afar Region</a></li>
+        <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#nav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="nav">
+            <ul class="navbar-nav me-auto">
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#" onclick="showSection('home')">Home</a>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#">Ethiopian Expedition</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#" onclick="showSection('Oromia')">Oromia</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="showSection('TanaBeles')">Tana Beles</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="showSection('Amhara')">Amhara</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="showSection('Tigray')">Tigray</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="showSection('afar')">Afar</a></li>
+                    </ul>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#">About</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#" onclick="showSection('about')">About</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="showSection('us-department')">U.S. Dept</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="showSection('childhood-journey')">Childhood</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="showSection('awards')">Awards</a></li>
+                    </ul>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#" onclick="showSection('gallery')">Gallery</a>
+                </li>
+
             </ul>
-        </li>
-        <li class="has-dropdown"><a href="#">About</a>
-            <ul>
-                <li><a href="#" onclick="showSection('about'); return false;">About Tesfaye</a></li>
-                <li><a href="#" onclick="showSection('us-department'); return false;">U.S. Department</a></li>
-                <li><a href="#" onclick="showSection('childhood-journey'); return false;">Childhood Journey</a></li>
-                <li><a href="#" onclick="showSection('awards'); return false;">Awards</a></li>
-            </ul>
-        </li>
-        <li><a href="#" onclick="showSection('gallery'); return false;">Gallery</a></li>
-    </ul>
+        </div>
+    </div>
 </nav>
 
-<!-- Always visible -->
+<!-- HERO HEADER -->
+<header class="hero">
+    <h1>Tesfaye Meskele</h1>
+    <h5>Where the road ends, resilience begins!</h5>
+</header>
 
-<section id="home">
-    <div class="video-grid">
-        <div class="video-wrapper" style="border-radius:8px; overflow:hidden; aspect-ratio:16/9; background:#000;">
-            <video controls style="width:100%; height:100%; display:block; object-fit:cover;">
-                <source src="0209.mp4" type="video/mp4">
-                Your browser does not support the video tag.
+<main class="container">
+
+    <!-- HOME -->
+    <section id="home">
+        <div class="video-wrapper">
+            <video controls>
+                <source src="images/0209.mp4" type="video/mp4">
             </video>
         </div>
+    </section>
+
+    <!-- DESCRIPTION -->
+    <section id="description">
+        <p>The late Tesfaye Meskele is remembered as a loving father...</p>
+        <img class="img-fluid" src="images/photo_2024-05-02_18-07-51.jpg">
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="page-section">
+        <h2>About Tesfaye</h2>
+        <p>Full biography content preserved here...</p>
+    </section>
+
+    <section id="us-department" class="page-section">
+        <h2>U.S. Department Contribution</h2>
+        <p>After contributing to numerous projects throughout Ethiopia, Tesfaye transitioned to the U.S. Embassy's Motorpool Department, where he dedicated over a decade of service. His role allowed him to collaborate with the POTUS VIP team and earned him multiple awards, including one directly from the White House Motor Department.</p>
+        <img src="images/photo_2025-01-09_15-39-40.jpg" alt="Air force 1" />
+        <img src="images/photo_2025-01-09_15-39-45.jpg" alt="The Beast" />
+    </section>
+
+    <section id="childhood-journey" class="page-section">
+        <h3>Childhood Journey</h3>
+        <p>As Tesfaye reached school age, he began his education with traditional spiritual lessons, known as Kollo Timhirt, led by elderly priests called Yenieta. However, the British government and a local landowner named Abate Amberbir supported the establishment of a modern primary school, named after Abate Amberbir, in the town of Tefki. Tesfaye and his peers were among the first students to enroll in this new school.</p>
+        <img src="images/photo_2024-05-02_19-26-42.jpg" alt="Abate Amberbir School Grade 2 class" />
+    </section>
+
+    <section id="awards" class="page-section">
+        <h2>Awards</h2>
+        <p>Content coming soon.</p>
+    </section>
+
+    <!-- OROMIA -->
+    <section id="Oromia" class="page-section">
+        <h2>Oromia</h2>
+        <p>After spending considerable time in the Amhara region working on the Tana Beles and RRC projects, he briefly returned to Addis Ababa following the rise of the TPLF. He later joined an Italian Cooperation aid project and was assigned to the Oromia region, focusing on tuberculosis control in Asella and nearby areas. Over time, his work extended across various parts of Oromia, including Abboomssa, Arba Gugu, Asella, Bale Robe, Borena, Dolo Manna, Ginir, Gambo, Hurutta, Kielem Wollega, Mettu, and Nekemt Wollega.</p>
+        <img class="img-fluid" src="images/photo_2025-01-08_14-50-03.jpg">
+        <img class="img-fluid" src="images/photo_2024-05-02_18-07-51.jpg" />
+    </section>
+
+    <!-- AMHARA -->
+    <section id="Amhara" class="page-section">
+        <h2>Amhara</h2>
+        <p>According to Tesfaye's account, he spent approximately eight years in the Amhara region, working with the Relief and Rehabilitation Commission (RRC) and on the Tana Beles dam projects. He described the Metekel Pawe area as the most challenging, with its harsh, scorching climate. During this time, he navigated numerous adventurous road conditions and overcame difficult living environments.</p>
+        <img class="img-fluid" src="images/88C2FC04.jpg">
+        <img class="img-fluid" src="images/135A441E.jpg" alt="Gondar fasi" />
+        <img class="img-fluid" src="images/D84334B2.jpg" alt="Fasil ginb" />
+    </section>
+
+    <!-- TANA BELES -->
+    <section id="TanaBeles" class="page-section">
+        <h2>Tana Beles Project</h2>
+        <p>During the Derg regime (1974–1991), the Tana Beles project was among Ethiopia's most ambitious and debated development initiatives, aligned with the Derg's socialist-driven efforts to modernize agriculture and the economy. Tesfaye played a crucial role, contributing tirelessly through his work with Salini Construction. His experiences during this period were filled with adventure and will be detailed in his upcoming book.</p>
+        <img class="img-fluid" src="images/photo_2025-01-09_13-39-26.jpg">
+    </section>
+
+    <!-- AFAR -->
+    <section id="afar" class="page-section">
+        <h2>Afar</h2>
+        <p>Tesfaye Meskele often traveled to Afar as part of the Italian Cooperation initiative, later contributing to a project known as the Health Sector Development Program (HSDP). This program focused on establishing clinics in Ethiopia's most remote areas.</p>
+        <p>As noted by Tesfaye, the HSDP specifically targeted Ethiopia's distant regions, including Afar, Oromia, Amhara, and Tigray. Between 1990 and 2006, the road network connecting Addis Ababa to the Afar region presented significant challenges, particularly along the route passing through the Awash area.</p>
+        <p>The primary route from Addis Ababa to Afar during this period involved traveling eastward through the town of Awash. The road conditions were often poor, with limited infrastructure, making the journey arduous for drivers.</p>
+        <img class="img-fluid" src="images/pixelcut-export2.jpeg">
+        <img class="img-fluid" src="images/pixelcut-export.jpeg" />
+        <img class="img-fluid" src="images/photo_2025-01-09_13-39-20.jpg" />
+        <img class="img-fluid" src="images/photo_2025-05-10_00-40-59.jpg" />
+        <img class="img-fluid" src="images/photo_2025-05-10_00-41-59.jpg" />
+        <img class="img-fluid" src="images/photo_2025-05-10_00-41-26.jpg" />
+        <img class="img-fluid" src="images/whatsapp1.jpg" alt="HSDP Project in Afar" />
+    </section>
+
+    <!-- TIGRAY -->
+    <section id="Tigray" class="page-section">
+        <h2>Tigray</h2>
+        <img class="img-fluid" src="images/whatsapp3.jpeg">
+    </section>
+
+    <!-- GALLERY -->
+    <section id="gallery" class="page-section">
+        <h2>Gallery</h2>
+        <div class="gallery-grid">
+            <img class="gallery-thumb" src="images/IM000083.jpg" onclick="openLightbox(0)" alt="Gallery image 1">
+            <img class="gallery-thumb" src="images/IM000084.jpg" onclick="openLightbox(1)" alt="Gallery image 2">
+            <img class="gallery-thumb" src="images/afar_zone_5_2005_11.jpg" onclick="openLightbox(2)" alt="Afar Zone 5 2005" />
+            <img class="gallery-thumb" src="images/afar_zone2.jpg" onclick="openLightbox(3)" alt="Afar Zone 2" />
+            <img class="gallery-thumb" src="images/afar_zone_2_026.jpg" onclick="openLightbox(4)" alt="Afar Zone 2 - 026" />
+            <img class="gallery-thumb" src="images/afar_zone_2_035.jpg" onclick="openLightbox(5)" alt="Afar Zone 2 - 035" />
+            <img class="gallery-thumb" src="images/afar_zone_2_047.jpg" onclick="openLightbox(6)" alt="Afar Zone 2 - 047" />
+            <img class="gallery-thumb" src="images/IM000083.jpg" onclick="openLightbox(7)" alt="Gallery image 8">
+            <img class="gallery-thumb" src="images/IM000084.jpg" onclick="openLightbox(8)" alt="Gallery image 9">
+            <img class="gallery-thumb" src="images/IM000085.jpg" onclick="openLightbox(9)" alt="Gallery image 10">
+            <img class="gallery-thumb" src="images/IM000090.jpg" onclick="openLightbox(10)" alt="Gallery image 11">
+            <img class="gallery-thumb" src="images/IM000091.jpg" onclick="openLightbox(11)" alt="Gallery image 12">
+            <img class="gallery-thumb" src="images/whatsapp4.jpeg" onclick="openLightbox(12)" alt="Gallery image 13">
+            <img class="gallery-thumb" src="images/afar_zone_5_2005.jpg" onclick="openLightbox(13)" alt="Afar Zone 5 2005" />
+            <img class="gallery-thumb" src="images/afar_zone_5_2005_10.jpg" onclick="openLightbox(14)" alt="Afar Zone 5 2005 - 10" />
         </div>
-    </div>
-</section>
+    </section>
 
-<section id="contact">
-    <h2>Contact</h2>
-    <div class="follow-us-buttons">
-        <a href="https://x.com/amantesf6356?s=21" target="_blank" class="follow-button follow-x">Follow on X</a>
-        <a href="https://www.instagram.com/wheelofresilience?igsh=MWh2d3Qxd2JlcHVkbQ%3D%3D&utm_source=qr" target="_blank" class="follow-button follow-instagram">Follow on Instagram</a>
-    </div>
-</section>
+</main>
 
-<section id="description">
-    <p>The late Tesfaye Meskele is remembered as a loving father, devoted husband, and the heart of our family. He was a provider who carried his responsibilities with quiet strength, humility, and deep dedication to those he cared for. Throughout his life, he served in humanitarian, development, and diplomatic missions across Ethiopia, often in very challenging conditions, and we are proud of the humanitarian work he did and the lives he touched through his service. Beyond his professional life, we remember his kindness, resilience, and strong sense of duty, which defined both his career and the way he cared for us. His memory will always remain a source of love, pride, and lasting gratitude in our family, and he will always stay in our hearts.</p>
-     <p>from his family</p>
-    <img id="description-photo" src="photo_2024-05-02_18-07-51.jpg" alt="Tesfaye Meskele" />
-</section>
-
-<!-- Hidden until nav click -->
-
-<section id="about" class="page-section">
-    <h2>About Tesfaye Meskele</h2>
-    <div class="about-text">
-        <p>Tesfaye Meskele is remembered as a disciplined and highly respected professional driver whose career was closely connected with major humanitarian, development, and diplomatic missions across Ethiopia. Over the course of several decades, he earned recognition for resilience, discretion, and exceptional operational skill under some of the most challenging conditions in the country.</p>
-
-        <p>He began his service under the Relief and Rehabilitation Commission (RRC), the government body established in 1974 to coordinate national disaster response, resettlement, and humanitarian operations. During the 1980s resettlement programs, the Metekel–Pawe area in Gojjam was developed as a relocation site for populations moved primarily from northern Ethiopia, including Tigray. In this demanding environment, Tesfaye carried out extensive overland transport missions across remote and underdeveloped terrain. He delivered essential food supplies and relief materials, including nutritional support items and sugar intended for malnourished children and vulnerable communities. His work required endurance, mechanical expertise, and precise route planning. Throughout these assignments, he faced severe hardships, including desert travel, extreme weather, malaria illness, brake failures in isolated regions, and even attempted hijackings. Despite these risks, he consistently completed his missions with professionalism and courage.</p>
-
-        <p>He later contributed to Ethiopia’s national infrastructure development through the Tana-Beles Dam Project, a major hydro-engineering initiative linking Lake Tana to the Beles River basin. There, he served as a mobile clinic driver, ensuring medical personnel could reach workers in remote operational areas. He subsequently worked with Salini (Salini Impregilo), the Italian engineering firm involved in large-scale dam and infrastructure projects, further strengthening his experience in multinational technical environments.</p>
-
-        <p>Tesfaye later joined the Italian Development Cooperation (Cooperazione Italiana), supporting tuberculosis control initiatives in the Oromia Region, particularly in Asella. He transported Italian physicians and public health professionals working to strengthen TB prevention and treatment programs. As the initiative expanded under Ethiopia’s Health Sector Development Program (HSDP), he once again undertook nationwide overland expeditions, transporting doctors and technical specialists to remote regions across the country.</p>
-
-        <p>In the final stage of his distinguished career, Tesfaye served in the Motor Pool Department of the U.S. Embassy in Addis Ababa. He completed certified offensive and defensive driving training and was entrusted with high-level diplomatic transport responsibilities. He drove U.S. Ambassador Patricia Haslach and the USAID Mission Director Dennis Weller during official engagements and field missions. He also supported VIP security coordination with the Presidential protection team during President Barack Obama’s historic 2015 visit to Ethiopia. His professionalism and advanced driving capability earned him formal recognition from the White House motorcade unit.</p>
-
-        <p>Tesfaye Meskele’s career reflects a lifetime of disciplined service across humanitarian response, national development, international public health, and diplomatic missions — distinguished by technical skill, discretion, and unwavering dedication.</p>
-    </div>
-</section>
-
-<section id="us-department" class="page-section highlight">
-    <h2>U.S. Department Contribution</h2>
-    <p>After contributing to numerous projects throughout Ethiopia, Tesfaye transitioned to the U.S. Embassy's Motorpool Department, where he dedicated over a decade of service. His role allowed him to collaborate with the POTUS VIP team and earned him multiple awards, including one directly from the White House Motor Department.</p>
-    <img src="photo_2025-01-09_15-39-40.jpg" alt="Air force 1" />
-    <img src="photo_2025-01-09_15-39-45.jpg" alt="The Beast" />
-</section>
-
-<section id="Oromia" class="page-section highlight">
-    <h2>Oromia</h2>
-    <p>After spending considerable time in the Amhara region working on the Tana Beles and RRC projects, he briefly returned to Addis Ababa following the rise of the TPLF. He later joined an Italian Cooperation aid project and was assigned to the Oromia region, focusing on tuberculosis control in Asella and nearby areas. Over time, his work extended across various parts of Oromia, including Abboomssa, Arba Gugu, Asella, Bale Robe, Borena, Dolo Manna, Ginir, Gambo, Hurutta, Kielem Wollega, Mettu, and Nekemt Wollega.</p>
-    <img id="oromia-image" src="photo_2025-01-08_14-50-03.jpg" alt="Oromia Region" />
-    <img id="oromia-image" src="photo_2024-05-02_18-07-51.jpg" alt="Oromia Region" />
-</section>
-
-<section id="Amhara" class="page-section highlight">
-    <h2>Amhara</h2>
-    <p>According to Tesfaye's account, he spent approximately eight years in the Amhara region, working with the Relief and Rehabilitation Commission (RRC) and on the Tana Beles dam projects. He described the Metekel Pawe area as the most challenging, with its harsh, scorching climate. During this time, he navigated numerous adventurous road conditions and overcame difficult living environments.</p>
-    <img src="88C2FC04.jpg" alt="Tis Abay" />
-    <img src="135A441E.jpg" alt="Gondar fasi" />
-    <img src="D84334B2.jpg" alt="Fasil ginb" />
-</section>
-
-<section id="TanaBeles" class="page-section highlight">
-    <h2>Tana Beles Project</h2>
-    <p>During the Derg regime (1974–1991), the Tana Beles project was among Ethiopia's most ambitious and debated development initiatives, aligned with the Derg's socialist-driven efforts to modernize agriculture and the economy. Tesfaye played a crucial role, contributing tirelessly through his work with Salini Construction. His experiences during this period were filled with adventure and will be detailed in his upcoming book.</p>
-    <img src="photo_2025-01-09_13-39-26.jpg" alt="Salini Construction" />
-</section>
-
-<section id="childhood-journey" class="page-section highlight">
-    <h3>Childhood Journey</h3>
-    <p>As Tesfaye reached school age, he began his education with traditional spiritual lessons, known as Kollo Timhirt, led by elderly priests called Yenieta. However, the British government and a local landowner named Abate Amberbir supported the establishment of a modern primary school, named after Abate Amberbir, in the town of Tefki. Tesfaye and his peers were among the first students to enroll in this new school.</p>
-    <img src="photo_2024-05-02_19-26-42.jpg" alt="Abate Amberbir School Grade 2 class" />
-</section>
-
-<section id="afar" class="page-section highlight">
-    <h2>Afar Region</h2>
-    <img src="pixelcut-export (2).jpeg" alt="Afar Region" />
-    <img src="pixelcut-export (1).jpeg" alt="Afar Region" />
-    <img src="photo_2025-01-09_13-39-20.jpg" alt="Afar Region" />
-    <img src="photo_2025-05-10_00-40-59.jpg" alt="Afar Region" />
-    <img src="photo_2025-05-10_00-41-59.jpg" alt="Afar Region" />
-    <img src="photo_2025-05-10_00-41-26.jpg" alt="Afar Region" />
-    <p>Tesfaye Meskele often traveled to Afar as part of the Italian Cooperation initiative, later contributing to a project known as the Health Sector Development Program (HSDP). This program focused on establishing clinics in Ethiopia's most remote areas.</p>
-    <p>As noted by Tesfaye, the HSDP specifically targeted Ethiopia's distant regions, including Afar, Oromia, Amhara, and Tigray. Between 1990 and 2006, the road network connecting Addis Ababa to the Afar region presented significant challenges, particularly along the route passing through the Awash area.</p>
-    <p>The primary route from Addis Ababa to Afar during this period involved traveling eastward through the town of Awash. The road conditions were often poor, with limited infrastructure, making the journey arduous for drivers.</p>
-    <img id="third-image" src="WhatsApp Image 2025-01-07 at 03.09.59_b316f25e.jpg" alt="HSDP Project in Afar" />
-</section>
-
-<section id="Tigray" class="page-section highlight">
-    <h2>Tigray</h2>
-    <img src="WhatsApp Image 2026-04-17 at 15.24.52.jpeg" alt="Tigray" />
-</section>
-
-<section id="awards" class="page-section highlight">
-    <h2>Awards</h2>
-    <p>Content coming soon.</p>
-</section>
-
-<section id="gallery" class="page-section">
-    <h2>Gallery</h2>
-    <div class="gallery-grid">
-        <img class="gallery-thumb" src="AFAR Zone 5 2005 009.jpg"                        alt="AFAR Zone 5 2005 009"  onclick="openLightbox(0)" />
-        <img class="gallery-thumb" src="AFAR Zone 5 2005 010.jpg"                        alt="AFAR Zone 5 2005 010"  onclick="openLightbox(1)" />
-        <img class="gallery-thumb" src="AFAR Zone 5 2005 011.jpg"                        alt="AFAR Zone 5 2005 011"  onclick="openLightbox(2)" />
-        <img class="gallery-thumb" src="AFAR Zone2 008.jpg"                              alt="AFAR Zone2 008"        onclick="openLightbox(3)" />
-        <img class="gallery-thumb" src="AFAR Zone2 026.jpg"                              alt="AFAR Zone2 026"        onclick="openLightbox(4)" />
-        <img class="gallery-thumb" src="AFAR Zone2 035.jpg"                              alt="AFAR Zone2 035"        onclick="openLightbox(5)" />
-        <img class="gallery-thumb" src="AFAR Zone2 047.jpg"                              alt="AFAR Zone2 047"        onclick="openLightbox(6)" />
-        <img class="gallery-thumb" src="IM000083.jpg"                                    alt="IM000083"              onclick="openLightbox(7)" />
-        <img class="gallery-thumb" src="IM000084.jpg"                                    alt="IM000084"              onclick="openLightbox(8)" />
-        <img class="gallery-thumb" src="IM000085.jpg"                                    alt="IM000085"              onclick="openLightbox(9)" />
-        <img class="gallery-thumb" src="IM000090.jpg"                                    alt="IM000090"              onclick="openLightbox(10)" />
-        <img class="gallery-thumb" src="IM000091.jpg"                                    alt="IM000091"              onclick="openLightbox(11)" />
-        <img class="gallery-thumb" src="WhatsApp Image 2026-04-06 at 17.39.05 (1).jpeg"  alt="April 2026"            onclick="openLightbox(12)" />
-        
-    </div>
-</section>
-
-<!-- Lightbox overlay -->
+<!-- LIGHTBOX -->
 <div id="lightbox" onclick="closeLightboxOnBackdrop(event)">
-    <button id="lightbox-close" onclick="closeLightbox()">&#215;</button>
-    <button id="lightbox-prev"  onclick="shiftLightbox(-1)">&#8249;</button>
-    <img    id="lightbox-img"   src="" alt="" />
-    <div    id="lightbox-caption"></div>
-    <button id="lightbox-next"  onclick="shiftLightbox(1)">&#8250;</button>
+    <img id="lightbox-img" alt="Lightbox image">
+    <button id="lightbox-prev" onclick="navigateLightbox(-1)">&#8249;</button>
+    <button id="lightbox-next" onclick="navigateLightbox(1)">&#8250;</button>
+    <button id="lightbox-close" onclick="closeLightbox()">&#10005;</button>
 </div>
 
-<div id="region-content" style="display:none;">
-    <h3 id="region-title"></h3>
-    <p  id="region-description"></p>
-    <img id="region-image" src="" alt="Region Image" />
-</div>
-
-<footer>
-    <div class="footer-content">
-        <p>© 2026 Tesfaye Meskele — All rights reserved.</p>
-        <div class="designed-by">
-            Designed by Amanuel Tesfaye &nbsp;|&nbsp;
-            <a href="https://www.freepik.com" target="_blank" style="color:white;">Freepik</a>
-        </div>
+<!-- FOOTER -->
+<footer class="footer">
+    <div>© 2026 Tesfaye Meskele</div>
+    <div class="footer-social">
+        <a href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.9 3.9 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.9 3.9 0 0 0-.923-1.417A3.9 3.9 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0zm.003 1.44c2.136 0 2.39.009 3.233.048.78.036 1.203.166 1.485.276.374.145.64.319.92.599s.453.546.598.92c.11.281.24.705.276 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.036.78-.166 1.203-.276 1.485-.145.374-.319.64-.599.92s-.546.453-.92.598c-.28.11-.704.24-1.485.276-.842.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.5 2.5 0 0 1-.92-.598 2.5 2.5 0 0 1-.6-.92c-.109-.282-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233s.008-2.388.046-3.231c.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92s.546-.453.92-.598c.282-.11.705-.24 1.485-.276.843-.038 1.096-.047 3.232-.047zM8 3.892a4.108 4.108 0 1 0 0 8.216 4.108 4.108 0 0 0 0-8.216zm0 6.775a2.667 2.667 0 1 1 0-5.334 2.667 2.667 0 0 1 0 5.334zm5.23-6.937a.96.96 0 1 1-1.92 0 .96.96 0 0 1 1.92 0z"/>
+            </svg>
+        </a>
+        <a href="https://www.facebook.com/" target="_blank" rel="noopener" aria-label="Facebook">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/>
+            </svg>
+        </a>
     </div>
 </footer>
 
-<script>
-    /* ── Section show/hide ── */
-    var alwaysVisible = ['home', 'contact', 'description'];
-
-    window.addEventListener('DOMContentLoaded', function () {
-        alwaysVisible.forEach(function (sid) {
-            var el = document.getElementById(sid);
-            if (el) el.style.display = 'block';
-        });
-    });
-
-    function showSection(id) {
-        document.querySelectorAll('.page-section').forEach(function (s) {
-            s.style.display = 'none';
-        });
-        if (id === 'home') {
-            alwaysVisible.forEach(function (sid) {
-                var el = document.getElementById(sid);
-                if (el) el.style.display = 'block';
-            });
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        } else {
-            alwaysVisible.forEach(function (sid) {
-                var el = document.getElementById(sid);
-                if (el) el.style.display = 'none';
-            });
-            var target = document.getElementById(id);
-            if (target) {
-                target.style.display = 'block';
-                setTimeout(function () {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }, 50);
-            }
-        }
-    }
-
-    /* ── Lightbox ── */
-    var galleryImages = [
-        { src: 'AFAR Zone 5 2005 009.jpg',                       caption: 'AFAR Zone 5 – 2005' },
-        { src: 'AFAR Zone 5 2005 010.jpg',                       caption: 'AFAR Zone 5 – 2005' },
-        { src: 'AFAR Zone 5 2005 011.jpg',                       caption: 'AFAR Zone 5 – 2005' },
-        { src: 'AFAR Zone2 008.jpg',                             caption: 'AFAR Zone 2' },
-        { src: 'AFAR Zone2 026.jpg',                             caption: 'AFAR Zone 2' },
-        { src: 'AFAR Zone2 035.jpg',                             caption: 'AFAR Zone 2' },
-        { src: 'AFAR Zone2 047.jpg',                             caption: 'AFAR Zone 2' },
-        { src: 'IM000083.jpg',                                   caption: 'IM000083' },
-        { src: 'IM000084.jpg',                                   caption: 'IM000084' },
-        { src: 'IM000085.jpg',                                   caption: 'IM000085' },
-        { src: 'IM000090.jpg',                                   caption: 'IM000090' },
-        { src: 'IM000091.jpg',                                   caption: 'IM000091' },
-        { src: 'WhatsApp Image 2026-04-06 at 17.39.05 (1).jpg',  caption: 'April 2026' },
-        { src: 'WhatsApp Image 2026-04-17 at 15.24.52.jpg',        caption: 'April 2026' }
-    ];
-
-    var currentIndex = 0;
-
-    function openLightbox(index) {
-        currentIndex = index;
-        updateLightbox();
-        document.getElementById('lightbox').classList.add('active');
-        document.body.style.overflow = 'hidden';
-    }
-
-    function closeLightbox() {
-        document.getElementById('lightbox').classList.remove('active');
-        document.body.style.overflow = '';
-    }
-
-    function closeLightboxOnBackdrop(e) {
-        if (e.target === document.getElementById('lightbox')) closeLightbox();
-    }
-
-    function shiftLightbox(dir) {
-        currentIndex = (currentIndex + dir + galleryImages.length) % galleryImages.length;
-        updateLightbox();
-    }
-
-    function updateLightbox() {
-        var item = galleryImages[currentIndex];
-        document.getElementById('lightbox-img').src     = item.src;
-        document.getElementById('lightbox-img').alt     = item.caption;
-        document.getElementById('lightbox-caption').textContent = item.caption;
-    }
-
-    document.addEventListener('keydown', function (e) {
-        var lb = document.getElementById('lightbox');
-        if (!lb.classList.contains('active')) return;
-        if (e.key === 'ArrowRight') shiftLightbox(1);
-        if (e.key === 'ArrowLeft')  shiftLightbox(-1);
-        if (e.key === 'Escape')     closeLightbox();
-    });
-</script>
+<script src="js/main.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>

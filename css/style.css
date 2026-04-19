@@ -1,0 +1,131 @@
+html { min-height:100%; position:relative; }
+body { margin-bottom:80px; }
+
+main.container {
+    padding-top: 90px;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.footer {
+    position:absolute;
+    bottom:0;
+    width:100%;
+    height:80px;
+    background:#CFB53B;
+    color:#000;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+}
+
+header.hero {
+    background:#000;
+    color:#fff;
+    padding: 100px 20px;
+    margin-top: 40px;
+    text-align:center;
+}
+
+header.hero h1 {
+    font-size: 4rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+}
+
+header.hero h5 {
+    font-size: 1.5rem;
+    font-weight: 300;
+    opacity: 0.85;
+    margin-top: 1rem;
+}
+
+.video-wrapper video { width:100%; }
+
+.page-section { display:none; }
+
+.gallery-grid {
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(200px,1fr));
+    gap:10px;
+}
+
+.gallery-thumb {
+    width:100%;
+    cursor:pointer;
+}
+
+/* Lightbox */
+#lightbox {
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.9);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
+}
+#lightbox.active { display:flex; }
+#lightbox img { max-width:90%; max-height:80%; }
+
+#lightbox-prev,
+#lightbox-next {
+    position:fixed;
+    top:50%;
+    transform:translateY(-50%);
+    background:rgba(255,255,255,0.15);
+    color:#fff;
+    border:none;
+    font-size:2.5rem;
+    padding:0.2rem 0.8rem;
+    cursor:pointer;
+    border-radius:4px;
+    transition:background 0.2s;
+    z-index:10;
+}
+#lightbox-prev { left:1rem; }
+#lightbox-next { right:1rem; }
+#lightbox-prev:hover,
+#lightbox-next:hover { background:rgba(255,255,255,0.35); }
+
+#lightbox-close {
+    position:fixed;
+    top:1rem;
+    right:1rem;
+    background:rgba(255,255,255,0.15);
+    color:#fff;
+    border:none;
+    font-size:1.5rem;
+    padding:0.2rem 0.6rem;
+    cursor:pointer;
+    border-radius:4px;
+    transition:background 0.2s;
+    z-index:10;
+}
+#lightbox-close:hover { background:rgba(255,255,255,0.35); }
+
+/* Navbar */
+.navbar {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    background-color:#CFB53B !important;
+}
+
+/* Footer social icons */
+.footer-social {
+    display: flex;
+    gap: 1rem;
+    margin-top: 0.5rem;
+}
+
+.footer-social a {
+    color: inherit;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+}
+
+.footer-social a:hover {
+    opacity: 1;
+}
